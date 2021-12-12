@@ -1,0 +1,9 @@
+搭建springboot的步骤
+    1.建立maven项目
+    2.导包（配置pom.xml）
+    3.application.yml
+    4.启动类
+    5.测试
+
+写代码的步骤
+    domain --> query --> mapper --> service --> 测试 --> controller --> 测试

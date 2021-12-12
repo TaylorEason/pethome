@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.jsc.org.mapper.DepartmentMapper">
+    <!--void save(Department department);//新增-->
+    <insert id="save">
+        insert into t_department
+            (
+             sn,
+             name,
+             dirPath,
+             state,
+             manager_id,
+             parent_id
+             )
+             VALUES
+                 (
+                     #{sn},
+                     #{name},
+                     #{dirPath},
+                     #{state},
+                     #{manager.id},
+                     #{parent.id}
+                 )
+    </insert>
+    <!--void update(Department department);//修改-->
+    <update id="update">
+        update t_department set
+                                sn=#{sn},
+                                name=#{name},
+                                dirPath=#{dirPath},
+                                state=#{state},
+                                manager_id=#{manager.id},
+                                parent_id=#{parent.id}
+                            where id=#{id}
+    </update>
+    <!--void remove(Long id);//删除-->
+    <delete id="remove">
+        delete from t_department where id=#{id}
+    </delete>
+    <!--Department loadById(Long id);//通过id查询-->
+    <select id="loadById" resultType="Department">
+        select  * from t_department  where id=#{id}
+    </select>
+    <!--List<Department> loadAll();//查询所有-->
+    <select id="loadAll" resultType="Department">
+        select  * from t_department
+    </select>
+
+
+    <!--Long queryCount(DepartmentQuery query);  查询总条数-->
+    <select id="queryCount" resultType="long">
+        select count(*) from t_department
+    </select>
+    <!--List<Department> queryData(DepartmentQuery query);查询当前的页数-->
+    <select id="queryData" resultType="Department">
+        select * from t_department
+        limit #{start},#{pageSize}
+    </select>
+
+</mapper>
